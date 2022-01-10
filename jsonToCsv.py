@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import argparse
+import numpy as np
 
 parser = argparse.ArgumentParser(description='Create Csv from Json')
 # argument1: json file name
@@ -56,6 +57,14 @@ def getIndex(df):
             if isinstance(col, list):
                 if colName in indexList:
                     indexList.remove(colName)
+
+    # delete non hashable col
+    for index, r in df.iterrows():
+        for colName in r.index:
+            col = r[colName]
+            if type(col) == dict:
+                if colName in indexList:
+                    indexList.remove(colName)
     return indexList
 
 # check row has list or dictionary
@@ -70,7 +79,9 @@ def checkRow(df):
             col = r[colName]
 
             # row has list to expand
-            if isinstance(col, list) and len(col)>0:
+            if isinstance(col, list):
+                # if len(col)>0:
+                #     result['hasList'] = True
                 result['hasList'] = True
 
             # row has dictionary to expand
@@ -110,6 +121,7 @@ while(True):
         # explode and fill data 
         if len(indexList) > 0:
             df = df.set_index(indexList)
+
         for col in df.columns:
             df = df.explode(col)
         idx = df.index
@@ -145,6 +157,10 @@ df = df[df.columns.drop(list(df.filter(regex='^index$')))]
 
 # select Cols
 if len(selectedColsList)>0: 
+    df = df[selectedColsList]
+    df = df.drop_duplicates(subset=selectedColsList)
+else:
+    selectedColsList = df.columns.values
     df = df[selectedColsList]
     df = df.drop_duplicates(subset=selectedColsList)
 
