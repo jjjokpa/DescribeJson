@@ -1,0 +1,5 @@
+accounting.firstName,accounting.lastName,accounting.age,sales.firstName,sales.lastName,sales.age
+John,Doe,23,Sally,Green,27
+John,Doe,23,Jim,Galley,41
+Mary,Smith,32,Sally,Green,27
+Mary,Smith,32,Jim,Galley,41

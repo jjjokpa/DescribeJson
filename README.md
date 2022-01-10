@@ -1,12 +1,14 @@
-# DescribeJson 
+# JsonToCsv
 
-DescribeJson is a script for describingJson 
+JsonToCsv is a script for creating Csv.
 
 ## Installation
 
+<code>pip install -r requirements.txt</code>
+
 ## Usage
 
-## Contributing
+<code>python jsonToCsv.py --file sample.json</code>
 
 ## License
 

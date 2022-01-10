@@ -1,8 +1,41 @@
 import json
 import pandas as pd
+import argparse
 
-fileName = 'sample.json'
-listName = None
+parser = argparse.ArgumentParser(description='Create Csv from Json')
+# argument1: json file name
+parser.add_argument('-f','--file', help='Insert Json file path.', required=True)
+# argument2: list name(optional)
+parser.add_argument('-l','--list', help='Insert List filed name in Json.', required=False)
+# argument3: select cols(optional) 
+parser.add_argument('-c','--cols', help='Insert Cols to select.', required=False)
+# argument4: header(optional) 
+parser.add_argument('-d','--header', help='Insert Headers to display.', required=False)
+# argument5: csv name(optional) 
+parser.add_argument('-o','--output', help='Insert Output file name.', required=False)
+args = parser.parse_args()
+
+fileName = args.file 
+listName = args.list 
+outputName = args.output
+if outputName is None:
+    outputName = 'myCsv.csv' 
+
+# select cols
+selectedCols = args.cols 
+selectedColsList = []
+
+if selectedCols is not None and len(selectedCols)>0: 
+    selectedColsList = selectedCols.split(',')
+    selectedColsList = list(map(lambda n: n.strip(), selectedColsList))
+
+# headers
+headers = args.header 
+headerList = []
+
+if headers is not None and len(headers)>0: 
+    headerList = headers.split(',')
+    headerList = list(map(lambda n: n.strip(), headerList))
 
 # get index
 def getIndex(df):
@@ -110,5 +143,13 @@ df = df[df.columns.drop(list(df.filter(regex='^level_\d+$')))]
 # delete index cols
 df = df[df.columns.drop(list(df.filter(regex='^index$')))]
 
+# select Cols
+if len(selectedColsList)>0: 
+    df = df[selectedColsList]
+    df = df.drop_duplicates(subset=selectedColsList)
+
+if len(headerList)>0:
+    df = df.set_axis(headerList, axis=1, inplace=False)
+
 # create csv
-df.to_csv('test.csv', index=False, encoding='utf-8')
+df.to_csv(outputName, index=False, encoding='utf-8')
