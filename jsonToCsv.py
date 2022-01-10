@@ -1,7 +1,6 @@
 import json
 import pandas as pd
 import argparse
-import numpy as np
 
 parser = argparse.ArgumentParser(description='Create Csv from Json')
 # argument1: json file name
@@ -149,11 +148,8 @@ while(True):
     if not checkResult['hasList'] and not checkResult['hasDict']:
         break
 
-# delete level cols
-df = df[df.columns.drop(list(df.filter(regex='^level_\d+$')))]
-
 # delete index cols
-df = df[df.columns.drop(list(df.filter(regex='^index$')))]
+df = df[df.columns.drop(list(df.filter(regex='^level_\d+$|^index$')))]
 
 # select Cols
 if len(selectedColsList)>0: 

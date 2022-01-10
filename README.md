@@ -20,6 +20,37 @@ options:
 
 ## Usage
 
+### ▼ sample.json
+
+<pre>
+{
+    "accounting": [
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "age": 23
+        },
+        {
+            "firstName": "Mary",
+            "lastName": "Smith",
+            "age": 32
+        }
+    ],
+    "sales": [
+        {
+            "firstName": "Sally",
+            "lastName": "Green",
+            "age": 27
+        },
+        {
+            "firstName": "Jim",
+            "lastName": "Galley",
+            "age": 41
+        }
+    ]
+}
+</pre>
+
 ### 1. Create csv by json
 
 <code>python jsonToCsv.py --file sample.json</code>
