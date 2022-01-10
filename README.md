@@ -1,4 +1,4 @@
-# JsonToCsv
+## JsonToCsv
 
 JsonToCsv is a script for creating Csv by Json.
 
@@ -20,21 +20,57 @@ options:
 
 ## Usage
 
-Create Csv by Json
+### 1. Create csv by json
 
 <code>python jsonToCsv.py --file sample.json</code>
 
-Create Csv by List field
+### ▼ Result
+
+<pre>
+accounting.firstName,accounting.lastName,accounting.age,sales.firstName,sales.lastName,sales.age
+John,Doe,23,Sally,Green,27
+John,Doe,23,Jim,Galley,41
+Mary,Smith,32,Sally,Green,27
+Mary,Smith,32,Jim,Galley,41
+</pre>
+
+### 2. Create csv by selected field
 
 <code>python jsonToCsv.py --file sample.json --list accounting</code>
 
-Select Columns
+### ▼ Result
+
+<pre>
+firstName,lastName,age
+John,Doe,23
+Mary,Smith,32
+</pre>
+
+### 3. Output only selected columns
 
 <code>python jsonToCsv.py --file sample.json --cols accounting.firstName,accounting.lastName</code>
 
-Set Csv Header
+### ▼ Result
+
+<pre>
+accounting.firstName,accounting.lastName
+John,Doe
+Mary,Smith
+</pre>
+
+### 4. Set headers
 
 <code>python jsonToCsv.py --file sample.json --header a_firstName,a_lastName,a_age,s_firstName,s_lastName,s_age</code>
+
+### ▼ Result
+
+<pre>
+a_firstName,a_lastName,a_age,s_firstName,s_lastName,s_age
+John,Doe,23,Sally,Green,27
+John,Doe,23,Jim,Galley,41
+Mary,Smith,32,Sally,Green,27
+Mary,Smith,32,Jim,Galley,41
+</pre>
 
 ## License
 
