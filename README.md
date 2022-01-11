@@ -51,7 +51,7 @@ options:
 }
 </pre>
 
-### 1. Create csv by json
+### Create csv by json
 
 <code>python jsonToCsv.py --file sample.json</code>
 
@@ -65,19 +65,8 @@ Mary,Smith,32,Sally,Green,27
 Mary,Smith,32,Jim,Galley,41
 </pre>
 
-### 2. Create csv by selected field
 
-<code>python jsonToCsv.py --file sample.json --list accounting</code>
-
-### ▼ Result
-
-<pre>
-firstName,lastName,age
-John,Doe,23
-Mary,Smith,32
-</pre>
-
-### 3. Output only selected columns
+### Output only selected columns
 
 <code>python jsonToCsv.py --file sample.json --cols accounting.firstName,accounting.lastName</code>
 
@@ -89,7 +78,7 @@ John,Doe
 Mary,Smith
 </pre>
 
-### 4. Set headers
+### Set headers
 
 <code>python jsonToCsv.py --file sample.json --header a_firstName,a_lastName,a_age,s_firstName,s_lastName,s_age</code>
 
